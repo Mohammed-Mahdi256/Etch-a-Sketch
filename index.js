@@ -1,4 +1,6 @@
 const container = document.querySelector('.container');
+const containerWidth = parseFloat(getComputedStyle(container).width);
+
 
 const changeDimBtn = document.querySelector('.btnChangeDim');
 
@@ -27,7 +29,7 @@ changeDimBtn.addEventListener('click', () => changeDim('enter the dimension (100
 
 function createGrid(dimension){
     if(typeof dimension !== 'number' || dimension <= 0 || dimension >100) return 'ERROR';
-
+    
     for (let i=0; i<dimension; i++) {  // create 16 rows
         let row = document.createElement('div');
         row.classList.add('row');
@@ -39,7 +41,7 @@ function createGrid(dimension){
             
             //determine the size depending on the dimension and the total gaps between the boxes
             totalGap = (dimension - 1) * 2; //there are dimension - 1 gaps each is 2px
-            unitSize = (300 - totalGap) / dimension;
+            unitSize = (containerWidth - totalGap) / dimension;
             div.style.width = `${unitSize}px`;
             div.style.height = `${unitSize}px`;
 
