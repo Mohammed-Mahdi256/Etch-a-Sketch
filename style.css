@@ -1,21 +1,23 @@
 .container {
     display: flex;
     flex-direction: column;
+    gap: 2px;
+    width: 300px;
+    height: 300px;
 }
 
 .row {
     display: flex;
-    padding: 2px;
+    width: 300px;
     gap: 2px;
 }
 
 
 .unit {
-    width: 40px;
-    height: 40px;
     background-color: grey;
 }
 
 .hovering {
     background-color: white;
 }
+
