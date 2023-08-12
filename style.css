@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    padding: 2px;
+    gap: 2px;
+}
+
+
+.unit {
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+}
+
