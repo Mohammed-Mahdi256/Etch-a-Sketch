@@ -1,8 +1,22 @@
 const container = document.querySelector('.container');
 let containerWidth = parseFloat(getComputedStyle(container).width);
 
+let currentDim = 16;
+
+let freshGrid = true
+
 
 const changeDimBtn = document.querySelector('.btnChangeDim');
+changeDimBtn.addEventListener('click', () => changeDim('enter the dimension (100 max):'));
+
+
+const eraseBtn = document.querySelector('.btnErase');
+eraseBtn.addEventListener('click', () => {
+    if(freshGrid) return;
+
+    eraseCurrentGrid();
+    createGrid(currentDim);
+})
 
 
 function changeDim(message){
@@ -12,19 +26,14 @@ function changeDim(message){
         createGrid(newDim);
     }
     else{changeDim(message='Invalide input! try again, the dimension should be a positive integer less than 100:')}
- 
-
-
 }
+
 
 function eraseCurrentGrid(){
     while(container.firstChild){
         container.removeChild(container.firstChild);
     }
 }
-
-
-changeDimBtn.addEventListener('click', () => changeDim('enter the dimension (100 max):'));
 
 
 function createGrid(dimension){
@@ -51,10 +60,18 @@ function createGrid(dimension){
             row.appendChild(div);
         }
 
-
-
         container.appendChild(row);
     }
+    currentDim = dimension;
+    freshGrid = true;
+}
+
+
+function addHover(div){
+    div.addEventListener('mouseenter', () => {
+    div.classList.add('hovering')
+    freshGrid = false;
+    })
 }
 
 
@@ -62,10 +79,4 @@ createGrid(16);
 createGrid('pizza');
 
 
-function addHover(div){
-    // pass a div and make it change color as the mouse hovers over it
-    div.addEventListener('mouseenter', () => {
-    div.classList.add('hovering')
-    })
-}
 
