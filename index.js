@@ -7,12 +7,15 @@ let freshGrid = true
 
 let divs = [];
 
-let randomColorsBtn = document.querySelector('.btnrandomcolor');
+const randomColorsBtn = document.querySelector('.btnrandomcolor');
 randomColorsBtn.addEventListener('click', () => {changeHoverTo(hoverRandomColor)});
 
-let defaultColorBtn = document.querySelector('.btndefaultcolor');
+const defaultColorBtn = document.querySelector('.btndefaultcolor');
 defaultColorBtn.addEventListener('click', () => {changeHoverTo(hoverDefault)});
 
+
+const colorPicker = document.querySelector('#colorPicker');
+colorPicker.addEventListener('input', () => changeHoverTo(hoverPickColor));
 
 
 const changeDimBtn = document.querySelector('.btnChangeDim');
@@ -97,12 +100,19 @@ function hoverRandomColor() {
 }
 
 
+function hoverPickColor(){
+    this.classList.remove('hovering');
+    this.style.backgroundColor = colorPicker.value;
+}
+
+
 
 function changeHoverTo(hoverMode) {
     divs.forEach(item => {
         // change the event listener to hoverMode
         item.removeEventListener('mouseenter', hoverDefault);
         item.removeEventListener('mouseenter', hoverRandomColor);
+        item.removeEventListener('mouseenter', hoverPickColor);
 
         item.addEventListener('mouseenter', hoverMode);
     })
