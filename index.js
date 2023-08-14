@@ -89,8 +89,8 @@ function createGrid(dimension){
 
 
 function hoverDefault() {
-        this.classList.add('hovering');
-        freshGrid = false;
+    this.style.backgroundColor = 'darkblue';
+    freshGrid = false;
 }
 
 function hoverRandomColor() {
@@ -101,7 +101,6 @@ function hoverRandomColor() {
 
 
 function hoverPickColor(){
-    this.classList.remove('hovering');
     this.style.backgroundColor = colorPicker.value;
 }
 
