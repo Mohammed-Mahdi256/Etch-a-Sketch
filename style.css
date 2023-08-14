@@ -36,9 +36,9 @@ body, html {
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
-    }
+}
 
-    
+
 .btn:hover {
     background-color: #ddd;
     color: #555;

@@ -5,6 +5,15 @@ let currentDim = 16;
 
 let freshGrid = true
 
+let divs = [];
+
+let randomColorsBtn = document.querySelector('.btnrandomcolor');
+randomColorsBtn.addEventListener('click', () => {changeHoverTo(hoverRandomColor)});
+
+let defaultColorBtn = document.querySelector('.btndefaultcolor');
+defaultColorBtn.addEventListener('click', () => {changeHoverTo(hoverDefault)});
+
+
 
 const changeDimBtn = document.querySelector('.btnChangeDim');
 changeDimBtn.addEventListener('click', () => changeDim('enter the dimension (100 max):'));
@@ -49,7 +58,7 @@ function createGrid(dimension){
     let totalGap = (dimension - 1) * gap; //there are dimension - 1 gaps each is gap wide
     let unitSize = (containerWidth - totalGap) / dimension;
 
-    
+    divs = new Array(dimension * dimension);
     for (let i=0; i<dimension; i++) {  // create 16 rows
         let row = document.createElement('div');
         row.classList.add('row');
@@ -63,9 +72,10 @@ function createGrid(dimension){
             div.style.width = `${unitSize}px`;
             div.style.height = `${unitSize}px`;
 
-            addHover(div);
+            div.addEventListener('mouseenter', hoverDefault);
 
             row.appendChild(div);
+            divs[j + i*dimension] = div;
         }
 
         container.appendChild(row);
@@ -75,16 +85,27 @@ function createGrid(dimension){
 }
 
 
-function addHover(div){
-    div.addEventListener('mouseenter', () => {
-    div.classList.add('hovering')
+function hoverDefault() {
+        this.classList.add('hovering');
+        freshGrid = false;
+}
+
+function hoverRandomColor() {
+    let rgb = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
+    this.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
     freshGrid = false;
-    })
 }
 
 
+
+function changeHoverTo(hoverMode) {
+    divs.forEach(item => {
+        // change the event listener to hoverMode
+        item.removeEventListener('mouseenter', hoverDefault);
+        item.removeEventListener('mouseenter', hoverRandomColor);
+
+        item.addEventListener('mouseenter', hoverMode);
+    })
+}
+
 createGrid(16);
-createGrid('pizza');
-
-
-
