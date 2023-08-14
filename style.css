@@ -49,6 +49,7 @@ body, html {
     flex-direction: column;
     gap: 2px;
     width: 80vmin;
+    background-color: whitesmoke;
 }
 
 .row {
@@ -58,10 +59,10 @@ body, html {
 
 
 .unit {
-    background-color: grey;
+    background-color: beige;
 }
 
 .hovering {
-    background-color: white;
+    background-color: darkblue;
 }
 

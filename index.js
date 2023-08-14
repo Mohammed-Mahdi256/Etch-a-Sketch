@@ -39,19 +39,27 @@ function eraseCurrentGrid(){
 function createGrid(dimension){
     if(typeof dimension !== 'number' || dimension <= 0 || dimension >100) return 'ERROR';
     
+    containerWidth = parseFloat(getComputedStyle(container).width);
+    let gap = 1;
+    if(dimension < 50) gap = 2;
+    if(dimension < 30) gap = 3;
+
+    container.style.gap = `${gap}px`;
+
+    let totalGap = (dimension - 1) * gap; //there are dimension - 1 gaps each is gap wide
+    let unitSize = (containerWidth - totalGap) / dimension;
+
+    
     for (let i=0; i<dimension; i++) {  // create 16 rows
         let row = document.createElement('div');
         row.classList.add('row');
+        row.style.gap = `${gap}px`;
+
         
         // fill every row with 16 divs
         for(let j=0; j<dimension; j++){
             let div = document.createElement('div');
             div.classList.add('unit');
-            
-            containerWidth = parseFloat(getComputedStyle(container).width);
-            //determine the size depending on the dimension and the total gaps between the boxes
-            totalGap = (dimension - 1) * 2; //there are dimension - 1 gaps each is 2px
-            unitSize = (containerWidth - totalGap) / dimension;
             div.style.width = `${unitSize}px`;
             div.style.height = `${unitSize}px`;
 
