@@ -7,6 +7,8 @@ let freshGrid = true
 
 let divs = [];
 
+let currentHoverMode = hoverDefault;
+
 const randomColorsBtn = document.querySelector('.btnrandomcolor');
 randomColorsBtn.addEventListener('click', () => {changeHoverTo(hoverRandomColor)});
 
@@ -75,7 +77,7 @@ function createGrid(dimension){
             div.style.width = `${unitSize}px`;
             div.style.height = `${unitSize}px`;
 
-            div.addEventListener('mouseenter', hoverDefault);
+            div.addEventListener('mouseenter', currentHoverMode);
 
             row.appendChild(div);
             divs[j + i*dimension] = div;
@@ -91,17 +93,21 @@ function createGrid(dimension){
 function hoverDefault() {
     this.style.backgroundColor = 'darkblue';
     freshGrid = false;
+    currentHoverMode = hoverDefault;
 }
 
 function hoverRandomColor() {
     let rgb = [Math.random() * 255, Math.random() * 255, Math.random() * 255];
     this.style.backgroundColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
     freshGrid = false;
+    currentHoverMode = hoverRandomColor;
 }
 
 
 function hoverPickColor(){
     this.style.backgroundColor = colorPicker.value;
+    currentHoverMode = hoverPickColor;
+    freshGrid = false;
 }
 
 
