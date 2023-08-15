@@ -7,7 +7,7 @@ body, html {
 }
 
 header {
-    background-color: #ffcc00;
+    background-color: #f4e29c;
     text-align: center;
     padding: 20px;
     
@@ -108,4 +108,12 @@ header {
     font-weight: bold;
     font-family: sans-serif;
     text-decoration: none;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: lightblue;
 }
